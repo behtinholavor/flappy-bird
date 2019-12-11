@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+      <title>FlappyBird</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Roberto Lavôr" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />     
+      
+      <link href="css/style-reset.css" rel="stylesheet">
+      <link href="css/style-main.css" rel="stylesheet">
+   </head>
+<body>
+      
+   <main id="main-game"> <!-- Configuração da pag. HTML -->
+      <section id="screen-game"> <!-- Configuração da área do jogo -->            
+         <section id="background-game" class="animated"> <!-- Plano de fundo do jogo -->
+            <section id="flyarea-game"> <!-- Área limite para o jogador -->
+               <div id="ceiling" class="animated"></div> <!-- Blocos/parede do topo -->
+               <div id="player" class="bird animated"></div>  <!-- Área limite para o jogador -->               
+               <div id="bigscore"></div> <!-- Marcação do score no topo -->                  
+               <div id="splash"></div> <!-- Splashscreen - Tela inicial "Get ready" -->                  
+               <div id="scoreboard"> <!-- Quadro de pontuação -->
+                  <div id="medal"></div> <!-- Medalha conquistada -->
+                  <div id="currentscore"></div> <!-- Pontuação obtida -->
+                  <div id="highscore"></div> <!-- Maior pontuação por Cookies -->
+
+                  <div id="replay"><img src="assets/refresh.png" alt="replay"></div> <!-- IMG para recomeçar -->                  
+                  <div id="podium"><img src="assets/trophy.png" alt="podium"></div> <!-- IMG para ranking -->                   
+                  <div id="login"><img src="assets/user.png" alt="login"></div> <!-- IMG para login -->                  
+               </div>                                  
+               <div id="loginboard">
+                  <input id="name" type="text" placeholder="Your name ">   
+                  <input id="email" type="email" placeholder="Your E-mail">   
+                  <div id="back"><img src="assets/erase.png" alt="login"></div>
+                  <div id="check" onclick="registerLogin()"><img src="assets/apply.png" alt="login"></div>
+               </div>
+               
+               <!-- Pipes ou Canos, vão aparecendo aqui por meio de um Array -->
+            </section>
+
+         </section>            
+         <section id="footer-game" class="animated"></section> <!-- Rodapé ou base do jogo -->         
+      </section>
+
+
+      
+         
+   </main>
+
+   <script src="js/jquery.min.js"></script>
+   <script src="js/jquery.transit.min.js"></script>
+   <script src="js/buzz.min.js"></script>
+   <script src="js/main.js"></script>
+
+</body>
+</html>
