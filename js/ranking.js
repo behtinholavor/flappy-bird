@@ -1,5 +1,6 @@
 // Definição da var de come back
 var backclickable = false;
+var base_url = "http://127.0.0.1:5000/players";
 
 // Função para mostrar o ranking
 function showRanking() {
@@ -17,10 +18,8 @@ function showRanking() {
 }
 
 function loadRanking() {
-    var url = "http://127.0.0.1:5000/players"
     var xhttp = new XMLHttpRequest();
-
-    xhttp.open("GET", url, true);
+    xhttp.open("GET", base_url, true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
     xhttp.onreadystatechange = function () {
@@ -65,7 +64,6 @@ function loadRanking() {
             }
         }
     }
-
     document.getElementById("list-ranking").innerHTML = xhttp.responseText;
 }
 

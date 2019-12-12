@@ -52,6 +52,12 @@ buzz.all().setVolume(volume);
 var loopGameloop;
 var loopPipeloop;
 
+// Definição das vars da pontuação min e máxima
+var big_score = 0;
+var small_score = 0;
+
+var base_url = "http://127.0.0.1:5000/players";
+
 // Assim que o documento carregar começa a depuração do jogo
 $(document).ready(function () {
    if (window.location.search == "?debug")
@@ -285,8 +291,12 @@ function setSmallScore() {
    elemscore.empty();
 
    var digits = score.toString().split('');
-   for (var i = 0; i < digits.length; i++)
+   for (var i = 0; i < digits.length; i++) {
       elemscore.append("<img src='assets/font_small_" + digits[i] + ".png' alt='" + digits[i] + "'>");
+      small_score = digits[i];
+      console.log('small_score: ', small_score);
+   }
+
 }
 
 // Função para setar a pontuação pequena e aparecer na tela as imagens de pequena pontuação
@@ -296,8 +306,12 @@ function setHighScore() {
    elemscore.empty();
 
    var digits = highscore.toString().split('');
-   for (var i = 0; i < digits.length; i++)
+   for (var i = 0; i < digits.length; i++) {
       elemscore.append("<img src='assets/font_small_" + digits[i] + ".png' alt='" + digits[i] + "'>");
+      big_score = digits[i];
+      console.log('big_score: ', big_score);
+   }
+
 }
 
 // Função para setar a medalha de acordo com a pontuação obtida
@@ -376,7 +390,7 @@ function showScore() {
       setCookie("highscore", highscore, 999);
    }
 
-   // Muda o quadro de score
+   // Muda o quadro de score   
    setSmallScore();
    setHighScore();
    var wonmedal = setMedal();
@@ -404,10 +418,6 @@ function showScore() {
          $("#medal").css({ scale: 2, opacity: 0 });
          $("#medal").transition({ opacity: 1, scale: 1 }, 1200, 'ease');
       }
-
-      // score;
-      // highscore;
-
    });
 
    // deixa o botão de replay com clique
@@ -495,35 +505,24 @@ function updatePipes() {
 }
 
 function registerLogin() {
-   var url = "http://127.0.0.1:5000/players"
    var xhttp = new XMLHttpRequest();
-   xhttp.open("POST", url, true);
+   xhttp.open("POST", base_url, true);
    xhttp.setRequestHeader("Content-Type", "application/json");
-
    xhttp.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
          var data = xhttp.responseText;
          console.log(data);
-         window.location.href = 'ranking.html';
-
+         //window.location.href = 'ranking.html';
       }
    }
-   name = document.getElementById('name').value;
-   email = document.getElementById('email').value;
-
-
-   big = score;
-   small = score;
-
    var data = JSON.stringify(
       {
-         name: name,
-         big_score: big,
-         small_score: small,
-         email: email
+         name: document.getElementById('name').value,
+         big_score: big_score,
+         small_score: small_score,
+         email: document.getElementById('email').value
       }
    );
-   console.log(data);
    xhttp.send(data);
 }
 
