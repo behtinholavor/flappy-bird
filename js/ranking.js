@@ -38,7 +38,7 @@ function loadRanking() {
 
             for (var i = 0; i < response.length; ++i) {
                 var al = document.createElement('a');
-                al.href = window.location.origin + window.location.pathname + '/players/' + response[i].id;
+                // al.href = window.location.origin + window.location.pathname + '/players/' + response[i].id;
                 switch (i) {
                     case 0: al.className = 'first'; break;
                     case 1: al.className = 'second'; break;

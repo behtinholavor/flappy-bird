@@ -455,7 +455,9 @@ $("#podium").click(function () {
 });
 
 $("#login").click(function () {
-   showLogin();
+   if (score >= 10) {
+      showLogin();
+   }
 });
 
 $("#back").click(function () {
@@ -505,27 +507,25 @@ function updatePipes() {
 }
 
 function registerLogin() {
-   if (score >= 10) {
-      var xhttp = new XMLHttpRequest();
-      xhttp.open("POST", base_url, true);
-      xhttp.setRequestHeader("Content-Type", "application/json");
-      xhttp.onreadystatechange = function () {
-         if (this.readyState === 4 && this.status === 200) {
-            var data = xhttp.responseText;
-            console.log(data);
-            //window.location.href = 'ranking.html';
-         }
+   var xhttp = new XMLHttpRequest();
+   xhttp.open("POST", base_url, true);
+   xhttp.setRequestHeader("Content-Type", "application/json");
+   xhttp.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+         var data = xhttp.responseText;
+         console.log(data);
+         //window.location.href = 'ranking.html';
       }
-      var data = JSON.stringify(
-         {
-            name: document.getElementById('name').value,
-            big_score: big_score,
-            small_score: small_score,
-            email: document.getElementById('email').value
-         }
-      );
-      xhttp.send(data);
    }
+   var data = JSON.stringify(
+      {
+         name: document.getElementById('name').value,
+         big_score: big_score,
+         small_score: small_score,
+         email: document.getElementById('email').value
+      }
+   );
+   xhttp.send(data);
 }
 
 
